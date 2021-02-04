@@ -1,0 +1,9 @@
+
+# Op basis van deze flag wordt de config gelezen uit config_site/gemeente
+#gemeente: "Zaanstad"
+#gemeente: "Groningen"
+klant: "Eindhoven"
+platform: "local" #"local"  # local, shinyserver, shinyproxy
+appversion: "0.1"
+appversiondate: "2020-09-01"
+ad_group: "TEST_ROLE"
