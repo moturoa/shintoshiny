@@ -1,4 +1,4 @@
-# A Stratum User R6 Object
+#' A Stratum User R6 Object
 #' @details Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 #' @export
 StratumUser <- R6::R6Class("StratumUser",

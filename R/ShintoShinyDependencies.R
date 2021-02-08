@@ -1,7 +1,7 @@
 #' Browser/navigator info dependencies
 #' @description In the UI, place the command \code{shintoshiny::browser_info_dependencies()}.
 #' @export
-browser_info_dependencies <- function() {
+shintoshiny_dependencies <- function() {
   
   list(
     htmltools::htmlDependency(name = "browserInfo-assets", version = "0.1",
@@ -13,6 +13,11 @@ browser_info_dependencies <- function() {
                    package = "shintoshiny",
                    src = "assets",
                    script = "bowser/bowser.min.js"
+    ),
+    htmltools::htmlDependency(name = "buttons", version = "0.1",
+                   package = "shintoshiny",
+                   src = "assets",
+                   stylesheet = "css/buttons.css"
     )
   )
 }
