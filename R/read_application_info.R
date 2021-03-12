@@ -4,7 +4,7 @@
 #' Either of those is NULL if either of the files don't exist. 
 #' @seealso \code{\link{appInfoModule}}, \code{\link{make_deploy_project}}
 #' @export
-read_application_info <- function(){
+read_application_info <- function(read_git = TRUE){
   
   fn <- "shintoconnect_manifest.yml"
   if(file.exists(fn)){
@@ -20,7 +20,12 @@ read_application_info <- function(){
     thisv <- NULL
   }
   
-  git <- read_git_version()
+  if(read_git){
+    git <- read_git_version()  
+  } else {
+    git <- list(sha="",last_update="")
+  }
+  
   
   list(rsconnect = lis, this_version = thisv, git = git)
   

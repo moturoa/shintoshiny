@@ -4,7 +4,7 @@
 \alias{read_application_info}
 \title{Read application info (this_version or rsconnect deploy log)}
 \usage{
-read_application_info()
+read_application_info(read_git = TRUE)
 }
 \description{
 Reads the content of  files "this_version.yml" and "shintoconnect_manifest.yml",
