@@ -16,6 +16,8 @@ read_application_info <- function(){
   tv <- "this_version.yml"
   if(file.exists(tv)){
     thisv <- yaml::read_yaml("this_version.yml")
+  } else {
+    thisv <- NULL
   }
   
   git <- read_git_version()

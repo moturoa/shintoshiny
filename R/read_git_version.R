@@ -5,7 +5,14 @@
 #' @export
 read_git_version <- function(){
   
-  requireNamespace("gert")
+  r <- requireNamespace("gert")
+  
+  if(!r){
+    return(list(
+      sha = "",
+      last_update = ""
+    ))
+  }
   
   gitlog <- try(gert::git_log(max = 1), silent = TRUE)
   

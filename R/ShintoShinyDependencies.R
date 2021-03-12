@@ -18,6 +18,12 @@ shintoshiny_dependencies <- function() {
                    package = "shintoshiny",
                    src = "assets",
                    stylesheet = "css/buttons.css"
+    ),
+    htmltools::htmlDependency(name = "tooltip",  
+      version = "0.1",
+      src = "assets",
+      script = "tooltip/tooltip.js",
+      stylesheet = "tooltip/tooltip.css"
     )
   )
 }
