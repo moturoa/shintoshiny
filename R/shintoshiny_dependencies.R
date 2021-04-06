@@ -19,6 +19,11 @@ shintoshiny_dependencies <- function() {
                    src = "assets",
                    stylesheet = "css/buttons.css"
     ),
+    htmltools::htmlDependency(name = "idletimeout", version = "0.1",
+                              package = "shintoshiny",
+                              src = "assets",
+                              script = "idletimeout/idletimeout.js"
+    ),
     htmltools::htmlDependency(name = "tooltip", version = "0.1",
       package = "shintoshiny",
       src = "assets",
