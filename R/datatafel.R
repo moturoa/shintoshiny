@@ -8,14 +8,17 @@ datatafel <- function(...,
                       rownames = FALSE,
                       ordering = TRUE,
                       extensions = "Responsive",
-                      selection = "single"){
+                      selection = "single",
+                      scrollX = FALSE,
+                      options = list()
+                      ){
   
   DT::datatable(...,
             escape = escape, 
             rownames = rownames,
             selection = selection,
             extensions = extensions,
-            options = list(dom = dom,
+            options = c(options, list(dom = dom,
                            ordering = ordering,
                            lengthChange = FALSE,
                            pageLength = pageLength,
@@ -30,8 +33,8 @@ datatafel <- function(...,
                                              last = "Laatste",
                                              `next` = "Volgende",
                                              previous = "Vorige"
-                                           )
-                           )
+                                           ))),
+                        list(scrollX = scrollX)
             )
   )
 }

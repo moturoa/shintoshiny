@@ -12,7 +12,9 @@ datatafel(
   rownames = FALSE,
   ordering = TRUE,
   extensions = "Responsive",
-  selection = "single"
+  selection = "single",
+  scrollX = FALSE,
+  options = list()
 )
 }
 \description{

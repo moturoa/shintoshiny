@@ -2,6 +2,7 @@
 #' @param id Input id
 #' @param username Use \code{\link{get_user}} to get the current user.
 #' @rdname userLogoutModule
+#' @importFrom shinydashboard dropdownMenuOutput
 #' @export
 userLogoutUI <- function(id){
   
@@ -12,6 +13,7 @@ userLogoutUI <- function(id){
 }
 
 #' @rdname userLogoutModule
+#' @importFrom shinydashboard dropdownMenu renderMenu notificationItem
 #' @export
 userLogoutModule <- function(input, output, session, username = "unknown"){
   

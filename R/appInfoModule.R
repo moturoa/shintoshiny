@@ -27,17 +27,20 @@ appInfoUI <- function(id,
 
   }
 
-  release_date <- ifelse(is.null(info$rsconnect$timestamp),
-                         info$this_version$appversiondate,
-                         format(as.Date(as.POSIXct(info$rsconnect$timestamp)))
-                         )
+  release_date <- info$rsconnect$timestamp
   
+  if(is.null(release_date)){
+    release_date <- info$this_version$appversiondate
+  } else {
+    release_date <- format(as.Date(as.POSIXct(info$rsconnect$timestamp)))
+  }
+    
   git_ver <- info$rsconnect$git$sha
   if(is.null(git_ver)){
     git_ver <- info$git$sha
   }
 
-  fluidPage(
+  tags$div(
     tags$img(src = "assets/logo/logoshintolabs.png", 
              width = "100px"),
     tags$div(info$this_version$appname, 
@@ -63,7 +66,7 @@ appInfoUI <- function(id,
 appInfoModule <- function(input, output, session){
 
   get_navigator_info(session)
-  nav <- reactive(input$navigatorInfo)
+  nav <- reactive()
   
   output$ui_browser_info <- renderUI({
     bi <- nav()
@@ -85,7 +88,7 @@ appInfoModule <- function(input, output, session){
   })
 
 
-
+return(nav)
 }
 
 
