@@ -66,7 +66,7 @@ appInfoUI <- function(id,
 appInfoModule <- function(input, output, session){
 
   get_navigator_info(session)
-  nav <- reactive()
+  nav <- reactive(input$navigatorInfo)
   
   output$ui_browser_info <- renderUI({
     bi <- nav()
