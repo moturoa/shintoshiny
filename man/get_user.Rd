@@ -6,6 +6,14 @@
 \usage{
 get_user(default = "demo", session = shiny::getDefaultReactiveDomain())
 }
+\arguments{
+\item{default}{If no username stored in session object, use this name (local dev)}
+
+\item{session}{The session object (don't have to set this)}
+}
+\value{
+Authenticated userid, character.
+}
 \description{
 Get user in this session
 }
