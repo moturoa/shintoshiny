@@ -1,0 +1,4 @@
+Name: Shinto Deploy App
+Description: Deploy a Shinto App on our Rstudio Connect server
+Binding: deploy_rsconnect
+Interactive: true
