@@ -42,8 +42,11 @@ deploy_rsconnect <- function(){
       shiny::uiOutput("ui_manifest_check"),
       
       shiny::tags$p(style = "font-size: 1.2em;",
-          "Controleer en zo nodig pas de informatie aan. Klik op 'Done' om de app te deployen."
-      )
+          "Controleer en zo nodig pas de informatie aan."
+      ),
+      
+      shiny::actionButton("btn_deploy", "Deploy", icon = icon("paper-plane"),
+                          class = "btn-success btn-lg")
       
     )
   )
@@ -72,6 +75,30 @@ deploy_rsconnect <- function(){
     })
     
     shiny::observeEvent(input$done, {
+      shiny::stopApp()
+    })
+    
+    shiny::observeEvent(input$btn_deploy, {
+      
+      showModal(
+        modalDialog(title = tagList(tags$span(icon("exclamation-triangle"), style = "color:red;"), 
+                                    "Deploy - laatste check"), 
+                    size = "m",
+                    
+                    tags$p(paste("Deploy naar", input$txt_appname, 
+                                 "op Rstudio Connect (", 
+                                 input$sel_server, ")- weet je het zeker?")),
+                    tags$p("Als je 'Ja' klikt, wacht tot dit window sluit (dit kan enkele minuten duren)"),
+                    actionButton("btn_confirm","Ja!", icon = icon("check"), class = "btn-success")
+        )
+      )
+      
+      
+    })
+    
+    
+    observeEvent(input$btn_confirm, {
+      
       rsconnect::deployApp(
         appTitle = input$txt_appname,
         appId = if(input$txt_appid == "")NULL else as.integer(input$txt_appid),
@@ -83,7 +110,9 @@ deploy_rsconnect <- function(){
       )
       
       shiny::stopApp()
+      
     })
+    
     
     
   }
