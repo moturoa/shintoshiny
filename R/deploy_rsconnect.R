@@ -30,7 +30,9 @@ check_appname <- function(appname = ""){
 deploy_rsconnect <- function(){
   
   ui <- miniUI::miniPage(
-    miniUI::gadgetTitleBar("Deploy App op Rstudio Connect - Shinto Labs"),
+    miniUI::gadgetTitleBar("Deploy App op Rstudio Connect - Shinto Labs",
+                           left = miniUI::miniTitleBarCancelButton(label = "Annuleren", primary = TRUE),
+                           right = NULL),
     miniUI::miniContentPanel(
       
       shiny::textInput("txt_appname", "Applicatie naam", value = ""),
@@ -74,8 +76,9 @@ deploy_rsconnect <- function(){
       
     })
     
-    shiny::observeEvent(input$done, {
-      shiny::stopApp()
+    
+    observeEvent(input$cancel, {
+      shiny::stopApp("Deploy geannulleerd.")
     })
     
     shiny::observeEvent(input$btn_deploy, {
@@ -109,7 +112,7 @@ deploy_rsconnect <- function(){
         forceUpdate = TRUE
       )
       
-      shiny::stopApp()
+      shiny::stopApp(paste("Applicatie gedeployed naar",input$txt_appname))
       
     })
     
@@ -118,7 +121,8 @@ deploy_rsconnect <- function(){
   }
   
   shiny::runGadget(ui, server, 
-                   viewer = shiny::dialogViewer(dialogName = "Deploy naar Rstudio Connect - Shinto Labs"))
+                   viewer = shiny::dialogViewer(dialogName = "Deploy naar Rstudio Connect - Shinto Labs"),
+                   stopOnCancel = FALSE)
   
 }
 

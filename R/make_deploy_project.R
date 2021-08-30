@@ -20,7 +20,7 @@
 #' @export
 make_deploy_project <- function(name,
                    path = "c:/repos_deploy",
-                   ignore_dirs = c("scripts","stubs","test","tests",
+                   ignore_dirs = c("scripts","stubs","test","tests","backup","docs",
                                    "rsconnect", ".git", ".Rproj.user"),
                    ignore_files = c(".gitignore",".Rhistory", "[.]Rproj$")
 ){
@@ -48,17 +48,7 @@ make_deploy_project <- function(name,
   
   file.copy(fn_root, out_path, overwrite = TRUE)
   
-  
-  checklist <- c(
-    "CHECKLIST voor Deploy naar Rstudio Connect",
-    "",
-    "- Aanpassen gemeente/klant in this_version.yml",
-    "- Handmatig verwijderen data/ folders die niet nodig zijn voor deze klant",
-    "- Run de app vanuit dit project als laatste lokale test"
-  )
-  writeLines(checklist, file.path(out_path, "CHECKLIST.md"))
-  
-  
+
   # manifest
   manif <- list(
     timestamp = format(Sys.time()),
@@ -67,10 +57,8 @@ make_deploy_project <- function(name,
   )
   yaml::write_yaml(manif, file.path(out_path, "shintoconnect_manifest.yml"))
   
-  
   rstudioapi::initializeProject(out_path)
   rstudioapi::openProject(out_path, newSession = TRUE)
-  rstudioapi::navigateToFile(file.path(out_path, "CHECKLIST.md"))
 }
 
 

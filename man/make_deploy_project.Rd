@@ -7,8 +7,8 @@
 make_deploy_project(
   name,
   path = "c:/repos_deploy",
-  ignore_dirs = c("scripts", "stubs", "test", "tests", "rsconnect", ".git",
-    ".Rproj.user"),
+  ignore_dirs = c("scripts", "stubs", "test", "tests", "backup", "docs", "rsconnect",
+    ".git", ".Rproj.user"),
   ignore_files = c(".gitignore", ".Rhistory", "[.]Rproj$")
 )
 }
