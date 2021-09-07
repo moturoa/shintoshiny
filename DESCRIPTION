@@ -1,7 +1,7 @@
 Package: shintoshiny
 Type: Package
 Title: All the boring components of a Shinto Labs shiny app
-Version: 0.5-2
+Version: 0.5-3
 Author: Remko Duursma
 Maintainer: Remko Duursma <remko@shintolabs.nl>
 Depends: shiny

@@ -8,9 +8,21 @@
 \usage{
 select_input(...)
 
-picker_input(..., dropdown_align_right = TRUE, dropup_auto = TRUE)
+picker_input(
+  ...,
+  dropdown_align_right = TRUE,
+  dropup_auto = TRUE,
+  live_search = FALSE
+)
 
 material_switch(..., status = "primary", inline = TRUE)
+}
+\arguments{
+\item{dropdown_align_right}{If TRUE, aligns the dropdown on the right side}
+
+\item{dropup_auto}{If TRUE, dropdown 'drops' up if no room on the bottom}
+
+\item{live_search}{If TRUE, adds a search field}
 }
 \description{
 Common shiny inputs with Shinto defaults
