@@ -9,16 +9,18 @@ check_appname <- function(appname = ""){
   have_tv <- file.exists("this_version.yml")
   
   if(!have_tv){
-    "Geen this_version.yml gevonden"
+    tags$p("Geen this_version.yml gevonden", style = "color: blue; font-size: 1.1em;")
   } else {
     
     tv <- yaml::read_yaml("this_version.yml")
     klant <- unname(unlist(tv[c("klant","gemeente")]))
     
     if(!grepl(klant, appname, ignore.case = TRUE)){
-      paste0("Klant is '", klant, "' maar appName is '", appname, "', klopt dit?")
+      tags$p(paste0("Klant is '", klant, "' maar appName is '", appname, "', klopt dit?"),
+             style = "color: red; font-size: 1.1em;")
     } else {
-      paste0("Klant naam (", klant, ") komt overeen met appName (", appname, ")")
+      tags$p(paste0("Klant naam (", klant, ") komt overeen met appName (", appname, ")"),
+             style = "color: green; font-size: 1.1em;")
     }
     
   }
@@ -60,8 +62,7 @@ deploy_rsconnect <- function(){
     
     output$ui_appname_check <- shiny::renderUI({
       shiny::req(input$txt_appname)
-      shiny::tags$p(check_appname(input$txt_appname),
-                    style = "font-size: 1.1em; color: red;")
+      check_appname(input$txt_appname)
     })
     
     output$ui_manifest_check <- shiny::renderUI({
