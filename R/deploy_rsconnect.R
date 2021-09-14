@@ -29,6 +29,8 @@ check_appname <- function(appname = ""){
 
 
 #' Deploy app op Rstudio Connect
+#' Rstudio gadget om applicatie te deployen.
+#' (export niet nodig, wordt geladen onder Add-ins in Rstudio, zie inst/rstudio/addins.dcf)
 deploy_rsconnect <- function(){
   
   ui <- miniUI::miniPage(
@@ -40,8 +42,9 @@ deploy_rsconnect <- function(){
       shiny::textInput("txt_appname", "Applicatie naam", value = ""),
       shiny::uiOutput("ui_appname_check"),
       shiny::textInput("txt_appid", "Applicatie ID (optioneel)", value = ""),
-      shiny::textInput("txt_account", "Account (rsconnect user)", value = ""),
-      shiny::selectInput("sel_server", "Server", choices = "connect.shintolabs.net"),
+      shiny::selectInput("txt_account", "Account (rsconnect user)", choices = NULL),
+      shiny::selectInput("sel_server", "Server", 
+                         choices = c("connect.shintolabs.net","app.shintolabs.net")),
       
       shiny::uiOutput("ui_manifest_check"),
       
@@ -58,7 +61,7 @@ deploy_rsconnect <- function(){
   server <- function(input, output, session){
     
     shiny::updateTextInput(session, "txt_appname", value = basename(getwd()))
-    shiny::updateTextInput(session, "txt_account", value = rsconnect::accounts()$name[1])
+    shiny::updateSelectInput(session, "txt_account", choices = rsconnect::accounts()$name)
     
     output$ui_appname_check <- shiny::renderUI({
       shiny::req(input$txt_appname)

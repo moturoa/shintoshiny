@@ -2,10 +2,14 @@
 % Please edit documentation in R/deploy_rsconnect.R
 \name{deploy_rsconnect}
 \alias{deploy_rsconnect}
-\title{Deploy app op Rstudio Connect}
+\title{Deploy app op Rstudio Connect
+Rstudio gadget om applicatie te deployen.
+(export niet nodig, wordt geladen onder Add-ins in Rstudio, zie inst/rstudio/addins.dcf)}
 \usage{
 deploy_rsconnect()
 }
 \description{
 Deploy app op Rstudio Connect
+Rstudio gadget om applicatie te deployen.
+(export niet nodig, wordt geladen onder Add-ins in Rstudio, zie inst/rstudio/addins.dcf)
 }
