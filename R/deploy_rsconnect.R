@@ -108,7 +108,7 @@ deploy_rsconnect <- function(){
       
       rsconnect::deployApp(
         appTitle = input$txt_appname,
-        appId = if(input$txt_appid == "")NULL else as.integer(input$txt_appid),
+        appId = if(input$txt_appid == "")NULL else input$txt_appid,
         account = input$txt_account,
         server = input$sel_server,
         launch.browser = TRUE,
