@@ -41,13 +41,16 @@ deploy_rsconnect <- function(){
       
       shiny::textInput("txt_appname", "Applicatie naam", value = ""),
       shiny::uiOutput("ui_appname_check"),
+      
+      shiny::selectInput("sel_where", 
+                         "Waar?",
+                         choices = c("Oude connect server" = "oud",
+                                     "Development - Infra21" = "development",
+                                     "Production - Infra21" = "production")),
+      
       shiny::textInput("txt_appid", "Applicatie ID (optioneel)", value = ""),
       shiny::selectInput("txt_account", "Account (rsconnect user)", choices = NULL),
-      shiny::selectInput("sel_server", "Server", 
-                         choices = c("connect.shintolabs.net",
-                                     "devapp.shintolabs.net",
-                                     "app.shintolabs.net")),
-      
+
       shiny::uiOutput("ui_manifest_check"),
       
       shiny::tags$p(style = "font-size: 1.2em;",
@@ -82,6 +85,15 @@ deploy_rsconnect <- function(){
       
     })
     
+    selected_server <- reactive({
+      
+      switch(input$sel_where, 
+             oud = "connect.shintolabs.net",
+             development = "devapp.shintolabs.net",
+             production = "app.shintolabs.net")
+      
+    })
+    
     
     shiny::observeEvent(input$cancel, {
       shiny::stopApp("Deploy geannulleerd.")
@@ -94,9 +106,14 @@ deploy_rsconnect <- function(){
                                     "Deploy - laatste check"), 
                     size = "m",
                     
+                    if(input$sel_where == "production"){
+                      tags$p(HTML("Je gaat deployen naar de <strong>Productieomgeving</strong>!!"),
+                             style = "font-size: 1.2em;")
+                    } else NULL,
+                    
                     shiny::tags$p(paste("Deploy naar", input$txt_appname, 
                                  "op Rstudio Connect (", 
-                                 input$sel_server, ")- weet je het zeker?")),
+                                 selected_server(), ")- weet je het zeker?")),
                     shiny::tags$p("Als je 'Ja' klikt, wacht tot dit window sluit (dit kan enkele minuten duren)"),
                     shiny::actionButton("btn_confirm","Ja!", icon = shiny::icon("check"), class = "btn-success")
         )
