@@ -44,7 +44,9 @@ deploy_rsconnect <- function(){
       shiny::textInput("txt_appid", "Applicatie ID (optioneel)", value = ""),
       shiny::selectInput("txt_account", "Account (rsconnect user)", choices = NULL),
       shiny::selectInput("sel_server", "Server", 
-                         choices = c("connect.shintolabs.net","app.shintolabs.net")),
+                         choices = c("connect.shintolabs.net",
+                                     "devapp.shintolabs.net",
+                                     "app.shintolabs.net")),
       
       shiny::uiOutput("ui_manifest_check"),
       

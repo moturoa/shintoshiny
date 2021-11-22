@@ -17,7 +17,6 @@ userLogoutUI <- function(id){
 #' @export
 userLogoutModule <- function(input, output, session, username = "unknown"){
   
-  
   output$profile <- shinydashboard::renderMenu({
     shinydashboard::dropdownMenu(type = "notifications", 
                  icon =  shiny::icon("user"), 
