@@ -70,7 +70,7 @@ deploy_rsconnect <- function(){
     
     acc <- rsconnect::accounts()
     
-    shiny::updateSelectInput(session, "txt_account", choices = paste0(acc$name, " (", acc$server, ")"))
+    shiny::updateSelectInput(session, "txt_account", choices = acc$name)
     
     output$ui_appname_check <- shiny::renderUI({
       shiny::req(input$txt_appname)
