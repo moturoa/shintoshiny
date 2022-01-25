@@ -44,13 +44,10 @@ deploy_rsconnect <- function(){
       
       shiny::selectInput("sel_where", 
                          "Waar?",
-                         choices = c("Oude connect server" = "oud",
-                                     "Development - Infra21" = "development",
-                                     "Production - Infra21" = "production")),
+                         choices = NULL),
       
       shiny::textInput("txt_appid", "Applicatie ID (optioneel)", value = ""),
-      shiny::selectInput("txt_account", "Account (rsconnect user)", choices = NULL),
-
+      
       shiny::uiOutput("ui_manifest_check"),
       
       shiny::tags$p(style = "font-size: 1.2em;",
@@ -65,12 +62,11 @@ deploy_rsconnect <- function(){
   
   server <- function(input, output, session){
     
-    shiny::updateTextInput(session, "txt_appname", value = basename(getwd()))
-    
-    
     acc <- rsconnect::accounts()
     
-    shiny::updateSelectInput(session, "txt_account", choices = acc$name)
+    shiny::updateSelectInput(session, "sel_where", choices = acc$server)
+    
+    shiny::updateTextInput(session, "txt_appname", value = basename(getwd()))
     
     output$ui_appname_check <- shiny::renderUI({
       shiny::req(input$txt_appname)
@@ -91,11 +87,12 @@ deploy_rsconnect <- function(){
     
     selected_server <- reactive({
       
-      switch(input$sel_where, 
-             oud = "connect.shintolabs.net",
-             development = "devapp.shintolabs.net",
-             production = "app.shintolabs.net")
-      
+      input$sel_where
+    })
+    
+    selected_account <- reactive({
+      req(input$sel_where)
+      acc$name[acc$server == input$sel_where]
     })
     
     
@@ -132,8 +129,8 @@ deploy_rsconnect <- function(){
       rsconnect::deployApp(
         appTitle = input$txt_appname,
         appId = if(input$txt_appid == "")NULL else input$txt_appid,
-        account = input$txt_account,
-        server = input$sel_server,
+        account = selected_account(),
+        server = selected_server(),
         launch.browser = TRUE,
         lint = TRUE,
         forceUpdate = TRUE
