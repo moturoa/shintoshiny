@@ -64,7 +64,7 @@ deploy_rsconnect <- function(){
     
     acc <- rsconnect::accounts()
     
-    shiny::updateSelectInput(session, "sel_where", choices = acc$server)
+    shiny::updateSelectInput(session, "sel_where", choices = acc$server, selected = character(0))
     
     shiny::updateTextInput(session, "txt_appname", value = basename(getwd()))
     
@@ -107,7 +107,7 @@ deploy_rsconnect <- function(){
                                     "Deploy - laatste check"), 
                     size = "m",
                     
-                    if(input$sel_where == "production"){
+                    if(input$sel_where == "app.shintolabs.net"){
                       tags$p(HTML("Je gaat deployen naar de <strong>Productieomgeving</strong>!!"),
                              style = "font-size: 1.2em;")
                     } else NULL,

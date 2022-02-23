@@ -22,7 +22,8 @@ make_deploy_project <- function(name,
                    path = "c:/repos_deploy",
                    ignore_dirs = c("scripts","stubs","test","tests","backup","docs",
                                    "rsconnect", ".git", ".Rproj.user"),
-                   ignore_files = c(".gitignore",".Rhistory", "[.]Rproj$")
+                   ignore_files = c(".gitignore",".Rhistory", "[.]Rproj$"),
+                   directories = NULL
 ){
   
   
@@ -30,16 +31,23 @@ make_deploy_project <- function(name,
   requireNamespace("R.utils")
   requireNamespace("uuid")
   
-  dirs <- list.dirs(full.names=FALSE, recursive=FALSE)
-  dirs <- dirs[!dirs %in% ignore_dirs]
+  if(is.null(directories)){
+    dirs <- list.dirs(full.names=FALSE, recursive=FALSE)
+    dirs <- dirs[!dirs %in% ignore_dirs]  
+  } else {
+    dirs <- directories
+  }
   
   out_path <- file.path(path, name)
-  dir.create(out_path, showWarnings = FALSE)
+  unlink(out_path, recursive = TRUE)
+  dir.create(out_path, showWarnings = FALSE, recursive = TRUE)
   
   here <- rstudioapi::getActiveProject()
   
   lapply(dirs, function(p){
-    R.utils::copyDirectory(p, to = file.path(out_path, p), overwrite = TRUE)
+    if(dir.exists(p)){
+      R.utils::copyDirectory(p, to = file.path(out_path, p), overwrite = TRUE)  
+    }
   })
   
   fn_root <- setdiff(list.files(), list.dirs(recursive = FALSE, full.names = FALSE))
