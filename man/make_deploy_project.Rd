@@ -9,7 +9,8 @@ make_deploy_project(
   path = "c:/repos_deploy",
   ignore_dirs = c("scripts", "stubs", "test", "tests", "backup", "docs", "rsconnect",
     ".git", ".Rproj.user"),
-  ignore_files = c(".gitignore", ".Rhistory", "[.]Rproj$")
+  ignore_files = c(".gitignore", ".Rhistory", "[.]Rproj$"),
+  directories = NULL
 )
 }
 \arguments{
