@@ -13,6 +13,7 @@ datatafel(
   ordering = TRUE,
   extensions = "Responsive",
   selection = "single",
+  lengthChange = FALSE,
   scrollX = FALSE,
   options = list()
 )

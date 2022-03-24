@@ -21,9 +21,14 @@ read_git_version <- function(){
     git_version <- list(sha = "unknown", last_update = "unknown")
     
   } else {
+    branch <- gert::git_branch()
+    remote <- gert::git_remote_list()$url[1]
+    
     git_version <- list(
       sha = substr(gitlog$commit, 1, 6),
-      last_update = format(gitlog$time, "%Y-%m-%d")
+      last_update = format(gitlog$time, "%Y-%m-%d"),
+      branch = branch,
+      remote = remote
     )
     
   }

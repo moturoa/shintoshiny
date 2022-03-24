@@ -5,7 +5,7 @@ Version: 0.7-2
 Author: Remko Duursma
 Maintainer: Remko Duursma <remko@shintolabs.nl>
 Depends: shiny
-Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer
+Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer, DBI
 Description: Logins, httpheaders app, info, user names, authentication, 
   deployment, loading screen, idle timeout, etc.
 License: GPL-2

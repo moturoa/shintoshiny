@@ -86,7 +86,6 @@ deploy_rsconnect <- function(){
     })
     
     selected_server <- reactive({
-      
       input$sel_where
     })
     
@@ -94,7 +93,6 @@ deploy_rsconnect <- function(){
       req(input$sel_where)
       acc$name[acc$server == input$sel_where]
     })
-    
     
     shiny::observeEvent(input$cancel, {
       shiny::stopApp("Deploy geannulleerd.")
@@ -126,7 +124,14 @@ deploy_rsconnect <- function(){
     
     shiny::observeEvent(input$btn_confirm, {
       
-      rsconnect::deployApp(
+      # 
+      con <- connect_db_rsconnect_deployments("conf/config.yml")
+      on.exit({
+        dbDisconnect(con)
+      })
+      
+      # Deploy de app
+      resp <- rsconnect::deployApp(
         appTitle = input$txt_appname,
         appId = if(input$txt_appid == "")NULL else input$txt_appid,
         account = selected_account(),
@@ -135,6 +140,14 @@ deploy_rsconnect <- function(){
         lint = TRUE,
         forceUpdate = TRUE
       )
+      
+      if(isTRUE(resp)){
+        # Schrijf deployment info naar rsconnect_deployments database
+        log_rsconnect_deployments(con, 
+                                  appname = input$txt_appname, 
+                                  environment = selected_server(), 
+                                  userid = selected_account())
+      }
       
       shiny::stopApp(paste("Applicatie gedeployed naar",input$txt_appname))
       
