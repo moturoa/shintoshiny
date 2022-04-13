@@ -2,6 +2,7 @@
 #'@export
 #'@importFrom config get
 #'@importFrom DBI dbConnect dbWriteTable dbDisconnect
+#'@importFrom config get
 shinto_db_connection <- function(what = c("CBS","BRKdata","BAGdata","shintoanalytics"), 
                                  file = "conf/config.yml"){
   
