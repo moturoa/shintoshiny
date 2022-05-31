@@ -11,8 +11,8 @@ config_is_encrypted(
 )
 }
 \description{
-Checks whether a `config.yml` file is completely or partially encrypted.
-Returns TRUE when all `dbpassword` (or other `password_names`) entries are already encrypted,
+Checks whether a \code{config.yml} file is completely or partially encrypted.
+Returns TRUE when all \code{dbpassword} (or other \code{password_names}) entries are already encrypted,
 FALSE when one or more are not yet encrypted (with a message)
 }
 \examples{

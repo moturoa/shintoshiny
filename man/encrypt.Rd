@@ -16,7 +16,7 @@ decrypt(x, secret = Sys.getenv("SHINTO_PASS_SECRET"))
 }
 \description{
 Symmetric encryption/decryption with a secret key.
-Uses the `libsodium` encryption library (in the `sodium` package).
-Unlike `safer::encrypt_string` on which this function is based, it takes a
+Uses the \code{libsodium} encryption library (in the \code{sodium} package).
+Unlike \code{safer::encrypt_string} on which this function is based, it takes a
 vector argument.
 }

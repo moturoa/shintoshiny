@@ -19,7 +19,7 @@ make_deploy_project(
 \item{path}{Where to make the new project, the project will be created in a subdirectory,
 given by its \code{name}.}
 
-\item{ignore_dirs}{Directories to ignore, these contain content that should **not** be uploaded
+\item{ignore_dirs}{Directories to ignore, these contain content that should \strong{not} be uploaded
 to Rstudio Connect.}
 
 \item{ignore_files}{Files to ignore (usually these are files in the root, otherwise use

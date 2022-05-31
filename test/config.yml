@@ -1,0 +1,39 @@
+default:
+  rsconnect_deployments:
+    dbname: rsconnect_deployments
+    dbhost: localhost
+    dbport: 2222
+    dbuser: rsconnect_deployments@postgres-dev2
+    dbpassword: PASS
+  Testdatabase:
+    dbname: data_test
+    dbhost: localhost
+    dbport: 2222
+    dbuser: data_test@postgres-dev2
+    dbpassword: bvkjfdgbvdf
+development:
+  shintousers:
+    dbname: shintousers
+    dbhost: postgres-dev2.postgres.database.azure.com
+    dbport: 5432
+    dbuser: shintousers@postgres-dev2.postgres.database.azure.com
+    dbpassword: PASS
+  data_bag:
+    dbname: data_bag
+    dbhost: postgres-dev2.postgres.database.azure.com
+    dbport: 5432
+    dbuser: nlextract@postgres-dev2.postgres.database.azure.com
+    dbpassword: PASS
+  Testdatabase:
+    dbname: data_test
+    dbhost: postgres-dev2.postgres.database.azure.com
+    dbport: 5432
+    dbuser: data_test@postgres-dev2.postgres.database.azure.com
+    dbpassword: bvkjfdgbvdf
+production:
+  shintousers:
+    dbname: shintousers
+    dbhost: postgres-p2.postgres.database.azure.com
+    dbport: 5432
+    dbuser: shintousers@postgres-p2.postgres.database.azure.com
+    dbpassword: PASS

@@ -22,8 +22,8 @@ encrypt_config_file(
 }
 \description{
 Finds password fields in a YAML config file, and encrypts them.
-The results are always written to a new file, with suffix ".encrypted" (or provided 
-`suffix` argument).
+The results are always written to a new file, with suffix ".encrypted" (or provided
+\code{suffix} argument).
 }
 \examples{
 \dontrun{
