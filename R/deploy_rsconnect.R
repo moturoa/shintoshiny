@@ -54,6 +54,10 @@ deploy_rsconnect <- function(){
           "Controleer en zo nodig pas de informatie aan."
       ),
       
+      shiny::radioButtons("rad_log_deploy", "Log deployment (rsconnect_deployments)", 
+                          choices = c("Ja","Nee"), selected = "Ja", inline = TRUE),
+      
+      
       shiny::actionButton("btn_deploy", "Deploy", icon = shiny::icon("paper-plane"),
                           class = "btn-success btn-lg")
       
@@ -141,7 +145,7 @@ deploy_rsconnect <- function(){
         forceUpdate = TRUE
       )
       
-      if(isTRUE(resp)){
+      if(isTRUE(resp) && input$rad_log_deploy == "Ja"){
         # Schrijf deployment info naar rsconnect_deployments database
         log_rsconnect_deployments(con, 
                                   appname = input$txt_appname, 

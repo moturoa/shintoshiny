@@ -8,7 +8,8 @@ log_rsconnect_deployments <- function(con, appname, environment, userid){
   
   fn_scm <- "shintoconnect_manifest.yml"
   if(!file.exists(fn_scm)){
-    stop("Dit kan alleen uit een 'deploy project' gedaan worden.")
+    message("Dit kan alleen uit een 'deploy project' gedaan worden.")
+    return(NULL)
   } 
   scm <- yaml::read_yaml(fn_scm)
   if(is.null(scm$git$branch))scm$git$branch <- ""
@@ -45,10 +46,15 @@ connect_db_rsconnect_deployments <- function(config_file){
   # zo niet, vul password in
   if(is.null(con) | inherits(con, "try-error")){
     
+    port <- Sys.getenv("SHINTO_DEV2_LOCAL_PORT")
+    if(port == ""){
+      stop("Set environment variable SHINTO_DEV2_LOCAL_PORT with your local forwarding port (e.g. 2222)")
+    }
+    
     con <- DBI::dbConnect(RPostgres::Postgres(), 
                           dbname = "rsconnect_deployments",
                           host = "localhost", 
-                          port = "2222", 
+                          port = port, 
                           user = "rsconnect_deployments@postgres-dev2", 
                           password = rstudioapi::askForPassword(
                           prompt = "Password user 'rsconnect_deployments' (dev2, 1Password)")
