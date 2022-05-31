@@ -129,10 +129,12 @@ deploy_rsconnect <- function(){
     shiny::observeEvent(input$btn_confirm, {
       
       # 
-      con <- connect_db_rsconnect_deployments("conf/config.yml")
-      on.exit({
-        dbDisconnect(con)
-      })
+      if(input$rad_log_deploy == "Ja"){
+        con <- connect_db_rsconnect_deployments("conf/config.yml")
+        on.exit({
+          dbDisconnect(con)
+        })  
+      }
       
       # Deploy de app
       resp <- rsconnect::deployApp(

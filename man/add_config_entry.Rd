@@ -54,7 +54,7 @@ Details:
 
 A connection can then be made with \code{shintobag::shinto_db_connection("Eindhoven")}.
 
-The port used in local forwarding is read from the environment variable SHINTO_DEV2_LOCAL_PORT.
+The port used in local forwarding is read from the environment variable \code{SHINTO_DEV2_LOCAL_PORT}.
 Or, a menu appears where you can enter it (but it is not remembered).
 
 A config file consists of three blocks: default, development and production. Which block
