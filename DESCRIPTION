@@ -4,7 +4,7 @@ Title: All the boring components of a Shinto Labs shiny app
 Version: 0.8
 Author: Remko Duursma
 Maintainer: Remko Duursma <remko@shintolabs.nl>
-Depends: shiny
+Depends: shiny, glue
 Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer, DBI, config, shinyWidgets
 Description: Logins, httpheaders app, info, user names, authentication, 
   deployment, loading screen, idle timeout, etc.
