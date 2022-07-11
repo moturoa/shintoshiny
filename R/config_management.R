@@ -82,6 +82,30 @@ add_config_entry <- function(name, dbname,  dbuser = dbname,
   
 }
 
+
+
+
+#------ Check if required config entries are present
+
+#' Check a config for presence of one or more database connections
+#' @export
+check_config <- function(name, where, file = "conf/config.yml"){
+
+    conf <- read_config(file)
+    
+    for(nm in name){
+
+        if(is.null(conf[[where]][[name]])){
+          
+        }
+
+    }
+
+}
+
+
+#=------- Utils
+
 # Stop if the entry already present
 check_has_config_entry <- function(name, conf, where){
   
@@ -103,7 +127,6 @@ read_config <- function(file){
   yaml::read_yaml(file)
   
 }
-
 
 
 #' Makes a config entry list 

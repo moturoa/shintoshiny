@@ -6,11 +6,14 @@
 \usage{
 install_shinto_rpackages(
   what = c("shintobag", "shintoshiny", "shintoui", "shinyfilterset", "shintodashboard",
-    "shintousers", "shinysavedom", "shintopostcode")
+    "shintousers", "shinysavedom", "shintopostcode"),
+  ...
 )
 }
 \arguments{
 \item{what}{Which packages to install. Defaults to most common ones.}
+
+\item{\dots}{Further arguments passed to \code{\link[remotes:install_github]{remotes::install_github()}}}
 }
 \description{
 Install (all) Shinto Labs R packages
