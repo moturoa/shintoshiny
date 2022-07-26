@@ -31,6 +31,8 @@ check_appname <- function(appname = ""){
 #' Deploy app op Rstudio Connect
 #' Rstudio gadget om applicatie te deployen.
 #' (export niet nodig, wordt geladen onder Add-ins in Rstudio, zie inst/rstudio/addins.dcf)
+#' @importFrom DBI dbDisconnect
+#' @importFrom rsconnect deployApp
 deploy_rsconnect <- function(){
   
   ui <- miniUI::miniPage(
@@ -132,7 +134,7 @@ deploy_rsconnect <- function(){
       if(input$rad_log_deploy == "Ja"){
         con <- connect_db_rsconnect_deployments("conf/config.yml")
         on.exit({
-          dbDisconnect(con)
+          DBI::dbDisconnect(con)
         })  
       }
       
