@@ -10,6 +10,7 @@ make_deploy_project(
   ignore_dirs = c("scripts", "stubs", "test", "tests", "backup", "docs", "rsconnect",
     ".git", ".Rproj.user"),
   ignore_files = c(".gitignore", ".Rhistory", "[.]Rproj$"),
+  extra_files = NULL,
   directories = NULL
 )
 }
@@ -24,6 +25,8 @@ to Rstudio Connect.}
 
 \item{ignore_files}{Files to ignore (usually these are files in the root, otherwise use
 \code{ignore_dirs}).}
+
+\item{extra_files}{List of files to include (for example if they were removed in ignore_dirs)}
 }
 \description{
 Opens a copy of this project including only relevant files,

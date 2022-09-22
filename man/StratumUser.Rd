@@ -14,17 +14,17 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{StratumUser$new()}}
-\item \href{#method-roles}{\code{StratumUser$roles()}}
-\item \href{#method-roles_table}{\code{StratumUser$roles_table()}}
-\item \href{#method-has_role}{\code{StratumUser$has_role()}}
-\item \href{#method-dump}{\code{StratumUser$dump()}}
-\item \href{#method-clone}{\code{StratumUser$clone()}}
+\item \href{#method-StratumUser-new}{\code{StratumUser$new()}}
+\item \href{#method-StratumUser-roles}{\code{StratumUser$roles()}}
+\item \href{#method-StratumUser-roles_table}{\code{StratumUser$roles_table()}}
+\item \href{#method-StratumUser-has_role}{\code{StratumUser$has_role()}}
+\item \href{#method-StratumUser-dump}{\code{StratumUser$dump()}}
+\item \href{#method-StratumUser-clone}{\code{StratumUser$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-StratumUser-new"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StratumUser$new(
@@ -37,8 +37,8 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-roles"></a>}}
-\if{latex}{\out{\hypertarget{method-roles}{}}}
+\if{html}{\out{<a id="method-StratumUser-roles"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-roles}{}}}
 \subsection{Method \code{roles()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StratumUser$roles()}\if{html}{\out{</div>}}
@@ -46,8 +46,8 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-roles_table"></a>}}
-\if{latex}{\out{\hypertarget{method-roles_table}{}}}
+\if{html}{\out{<a id="method-StratumUser-roles_table"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-roles_table}{}}}
 \subsection{Method \code{roles_table()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StratumUser$roles_table()}\if{html}{\out{</div>}}
@@ -55,8 +55,8 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-has_role"></a>}}
-\if{latex}{\out{\hypertarget{method-has_role}{}}}
+\if{html}{\out{<a id="method-StratumUser-has_role"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-has_role}{}}}
 \subsection{Method \code{has_role()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StratumUser$has_role(role, local = FALSE)}\if{html}{\out{</div>}}
@@ -64,8 +64,8 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-dump"></a>}}
-\if{latex}{\out{\hypertarget{method-dump}{}}}
+\if{html}{\out{<a id="method-StratumUser-dump"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-dump}{}}}
 \subsection{Method \code{dump()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{StratumUser$dump()}\if{html}{\out{</div>}}
@@ -73,8 +73,8 @@ Alleen gebruikt voor shinyproxy deployments met AD authenticatie.
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-StratumUser-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-StratumUser-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

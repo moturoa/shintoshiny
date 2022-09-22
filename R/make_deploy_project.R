@@ -8,6 +8,7 @@
 #' to Rstudio Connect.
 #' @param ignore_files Files to ignore (usually these are files in the root, otherwise use
 #' \code{ignore_dirs}).
+#' @param extra_files List of files to include (for example if they were removed in ignore_dirs)
 #' @examples
 #' \dontrun{
 #'
@@ -23,6 +24,7 @@ make_deploy_project <- function(name,
                    ignore_dirs = c("scripts","stubs","test","tests","backup","docs",
                                    "rsconnect", ".git", ".Rproj.user"),
                    ignore_files = c(".gitignore",".Rhistory", "[.]Rproj$"),
+                   extra_files = NULL,
                    directories = NULL
 ){
   
@@ -56,6 +58,9 @@ make_deploy_project <- function(name,
   
   file.copy(fn_root, out_path, overwrite = TRUE)
   
+  if(!is.null(extra_files)){
+    file.copy(extra_files, file.path(out_path,extra_files), overwrite = TRUE)
+  }
 
   # manifest
   manif <- list(
