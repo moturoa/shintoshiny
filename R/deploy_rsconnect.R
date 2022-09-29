@@ -58,7 +58,7 @@ deploy_rsconnect <- function(){
       
       shiny::radioButtons("rad_log_deploy", "Log deployment (rsconnect_deployments)", 
                           choices = c("Ja","Nee"), selected = "Ja", inline = TRUE),
-      
+    
       
       shiny::actionButton("btn_deploy", "Deploy", icon = shiny::icon("paper-plane"),
                           class = "btn-success btn-lg")
@@ -68,6 +68,7 @@ deploy_rsconnect <- function(){
   
   server <- function(input, output, session){
     
+
     acc <- rsconnect::accounts()
     
     shiny::updateSelectInput(session, "sel_where", choices = acc$server, selected = character(0))
@@ -91,7 +92,7 @@ deploy_rsconnect <- function(){
       
     })
     
-    selected_server <- reactive({
+    selected_server <- shiny::reactive({
       input$sel_where
     })
     
@@ -104,13 +105,24 @@ deploy_rsconnect <- function(){
       shiny::stopApp("Deploy geannulleerd.")
     })
     
+    
+    output$ui_momentje <- shiny::renderUI({
+      
+      req(input$btn_deploy)
+      "Packages worden gecontroleerd - een moment geduld!"
+    })
+    
     shiny::observeEvent(input$btn_deploy, {
       
-      showModal(
-        modalDialog(title = shiny::tagList(shiny::tags$span(shiny::icon("exclamation-triangle"), style = "color:red;"), 
+      shiny::showModal(
+        shiny::modalDialog(title = shiny::tagList(shiny::tags$span(
+                  shiny::icon("triangle-exclamation"), style = "color:red;"), 
                                     "Deploy - laatste check"), 
                     size = "m",
-                    
+                  
+                    shiny::uiOutput("ui_package_sources"),
+                  
+                  
                     if(input$sel_where == "app.shintolabs.net"){
                       tags$p(HTML("Je gaat deployen naar de <strong>Productieomgeving</strong>!!"),
                              style = "font-size: 1.2em;")
@@ -127,6 +139,38 @@ deploy_rsconnect <- function(){
       
     })
     
+    shinto_packs_from_source <- shiny::reactive({
+      
+      if(file.exists("package_info.rds")){
+        app_deps_info <- readRDS("package_info.rds")
+      } else {
+        return(NULL)
+      }
+      
+      subset(app_deps_info, source == "local") 
+    })
+    
+    output$ui_package_sources <- shiny::renderUI({
+      
+      locpack <- shinto_packs_from_source()
+      req(locpack)
+      req(nrow(locpack) > 0)
+      
+      tags$div(
+        shiny::tags$hr(),
+        shiny::tags$p("De volgende packages moeten vanaf Github (moturoa) geinstalleerd worden:"),
+        shiny::tags$p(paste(locpack$package, collapse = ", ")),
+        shiny::tags$p("Wil je dat nu doen?", shiny::actionButton("btn_install", "Ja!", class = "btn-success"))
+      )
+      
+    })
+    
+    observeEvent(input$btn_install, {
+      locpack <- shinto_packs_from_source()
+      req(nrow(locpack) > 0)
+      
+      install_shinto_rpackages(locpack$package)
+    })
     
     shiny::observeEvent(input$btn_confirm, {
       
