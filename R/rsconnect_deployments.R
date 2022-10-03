@@ -15,6 +15,10 @@ log_rsconnect_deployments <- function(con, appname, environment, userid){
   if(is.null(scm$git$branch))scm$git$branch <- ""
   if(is.null(scm$git$remote))scm$git$remote <- ""
   
+  # current software version, when using git flow (correctly)
+  cur_ver <- get_current_version()
+  if(is.na(cur_ver))cur_ver <- ""
+  
   tab <- data.frame(
     timestamp = format(Sys.time()),
     environment = environment,
@@ -22,7 +26,8 @@ log_rsconnect_deployments <- function(con, appname, environment, userid){
     userid = userid,
     git_sha = scm$git$sha,
     git_branch = scm$git$branch,
-    git_remote = scm$git$remote
+    git_remote = scm$git$remote,
+    version = cur_ver
   )
   
   DBI::dbWriteTable(con, DBI::Id(schema = "rsconnect", table = "deployments"),
