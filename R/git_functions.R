@@ -1,7 +1,8 @@
 
 # Find out if current commit is a tag, and if not, how recent
 
-#' @importFrom gert git_tag_list
+#' @importFrom gert git_tag_list git_log git_info
+#' @importFrom stringr str_replace_all str_extract
 
 # like '3.5.2.1' TRUE else FALSE
 is_version_nr <- function(x){
