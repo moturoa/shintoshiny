@@ -16,8 +16,15 @@ log_rsconnect_deployments <- function(con, appname, environment, userid){
   if(is.null(scm$git$remote))scm$git$remote <- ""
   
   # current software version, when using git flow (correctly)
-  cur_ver <- get_current_version()
-  if(is.na(cur_ver))cur_ver <- ""
+  if(file.exists("VERSION")){
+    cur_ver <- readLines("VERSION")[1]    
+  } else {
+    cur_ver <- ""
+  }
+  
+  # of heel ingewikkeld via git logs
+  #get_current_version()
+  #if(is.na(cur_ver))cur_ver <- ""
   
   tab <- data.frame(
     timestamp = format(Sys.time()),
