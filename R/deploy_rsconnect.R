@@ -139,31 +139,31 @@ deploy_rsconnect <- function(){
       
     })
     
-    shinto_packs_from_source <- shiny::reactive({
-      
-      if(file.exists("package_info.rds")){
-        app_deps_info <- readRDS("package_info.rds")
-      } else {
-        return(NULL)
-      }
-      
-      subset(app_deps_info, source == "local") 
-    })
-    
-    output$ui_package_sources <- shiny::renderUI({
-      
-      locpack <- shinto_packs_from_source()
-      req(locpack)
-      req(nrow(locpack) > 0)
-      
-      tags$div(
-        shiny::tags$hr(),
-        shiny::tags$p("De volgende packages moeten vanaf Github (moturoa) geinstalleerd worden:"),
-        shiny::tags$p(paste(locpack$package, collapse = ", ")),
-        shiny::tags$p("Wil je dat nu doen?", shiny::actionButton("btn_install", "Ja!", class = "btn-success"))
-      )
-      
-    })
+    # shinto_packs_from_source <- shiny::reactive({
+    #   
+    #   if(file.exists("package_info.rds")){
+    #     app_deps_info <- readRDS("package_info.rds")
+    #   } else {
+    #     return(NULL)
+    #   }
+    #   
+    #   subset(app_deps_info, source == "local") 
+    # })
+    # 
+    # output$ui_package_sources <- shiny::renderUI({
+    #   
+    #   locpack <- shinto_packs_from_source()
+    #   req(locpack)
+    #   req(nrow(locpack) > 0)
+    #   
+    #   tags$div(
+    #     shiny::tags$hr(),
+    #     shiny::tags$p("De volgende packages moeten vanaf Github (moturoa) geinstalleerd worden:"),
+    #     shiny::tags$p(paste(locpack$package, collapse = ", ")),
+    #     shiny::tags$p("Wil je dat nu doen?", shiny::actionButton("btn_install", "Ja!", class = "btn-success"))
+    #   )
+    #   
+    # })
     
     observeEvent(input$btn_install, {
       locpack <- shinto_packs_from_source()

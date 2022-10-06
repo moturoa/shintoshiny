@@ -71,8 +71,9 @@ make_deploy_project <- function(name,
   yaml::write_yaml(manif, file.path(out_path, "shintoconnect_manifest.yml"))
   
   # package info
-  pi <- package_dependencies_info()
-  saveRDS(pi, file.path(out_path, "package_info.rds"))
+  # ... too slow
+  # pi <- package_dependencies_info()
+  # saveRDS(pi, file.path(out_path, "package_info.rds"))
   
   rstudioapi::initializeProject(out_path)
   rstudioapi::openProject(out_path, newSession = TRUE)
