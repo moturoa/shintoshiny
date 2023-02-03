@@ -1,12 +1,12 @@
 Package: shintoshiny
 Type: Package
 Title: All the boring components of a Shinto Labs shiny app
-Version: 0.9-4
+Version: 0.9.5
 Author: Remko Duursma
 Maintainer: Remko Duursma <remko@shintolabs.nl>
 Depends: shiny, glue
 Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer, 
-  DBI, config, shinyWidgets,rsconnect,gert
+  DBI, config, shinyWidgets,rsconnect,gert,shintodb
 Description: Logins, httpheaders app, info, user names, authentication, 
   deployment, loading screen, idle timeout, etc.
 License: GPL (>= 3)

@@ -33,6 +33,7 @@ check_appname <- function(appname = ""){
 #' (export niet nodig, wordt geladen onder Add-ins in Rstudio, zie inst/rstudio/addins.dcf)
 #' @importFrom DBI dbDisconnect
 #' @importFrom rsconnect deployApp
+#' @importFrom shintodb connect config_is_encrypted decrypt_config_file
 deploy_rsconnect <- function(){
   
   ui <- miniUI::miniPage(
@@ -68,7 +69,8 @@ deploy_rsconnect <- function(){
   
   server <- function(input, output, session){
     
-
+    db_config_file <- "conf/config.yml"  # shinto hardcoded
+    
     acc <- rsconnect::accounts()
     
     shiny::updateSelectInput(session, "sel_where", choices = acc$server, selected = character(0))
@@ -111,6 +113,7 @@ deploy_rsconnect <- function(){
       req(input$btn_deploy)
       "Packages worden gecontroleerd - een moment geduld!"
     })
+    
     
     shiny::observeEvent(input$btn_deploy, {
       
@@ -176,11 +179,16 @@ deploy_rsconnect <- function(){
       
       # 
       if(input$rad_log_deploy == "Ja"){
-        con <- connect_db_rsconnect_deployments("conf/config.yml")
+        con <- connect_db_rsconnect_deployments(db_config_file)
         on.exit({
           DBI::dbDisconnect(con)
         })  
       }
+
+      #if(shintodb::config_is_encrypted(db_config_file)){
+      # unencrypted wordt toch geskipt
+      shintodb::decrypt_config_file(db_config_file,db_config_file)
+      #}
       
       # Deploy de app
       resp <- rsconnect::deployApp(
@@ -200,6 +208,8 @@ deploy_rsconnect <- function(){
                                   environment = selected_server(), 
                                   userid = selected_account())
       }
+      
+      shintodb::encrypt_config_file(db_config_file)
       
       shiny::stopApp(paste("Applicatie gedeployed naar",input$txt_appname))
       
