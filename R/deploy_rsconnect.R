@@ -40,14 +40,13 @@ deploy_rsconnect <- function(){
     miniUI::gadgetTitleBar("Deploy App op Rstudio Connect - Shinto Labs",
                            left = miniUI::miniTitleBarCancelButton(label = "Annuleren", primary = TRUE),
                            right = NULL),
+    
     miniUI::miniContentPanel(
       
       shiny::textInput("txt_appname", "Applicatie naam", value = ""),
       shiny::uiOutput("ui_appname_check"),
       
-      shiny::selectInput("sel_where", 
-                         "Waar?",
-                         choices = NULL),
+      shiny::selectInput("sel_where", "Waar?", choices = NULL),
       
       shiny::textInput("txt_appid", "Applicatie ID (optioneel)", value = ""),
       

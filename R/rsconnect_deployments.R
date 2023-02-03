@@ -50,9 +50,9 @@ connect_db_rsconnect_deployments <- function(config_file){
   
   # Gebruik standaard config (default entry)
   con <- try({
-    shintobag::shinto_db_connection("rsconnect_deployments", 
-                                    file = config_file,
-                                    config_entry = "default")
+    shintodb::connect("rsconnect_deployments", 
+                      file = config_file,
+                      config_entry = "default")
   }, silent = TRUE)
   
   # zo niet, vul password in
@@ -69,7 +69,7 @@ connect_db_rsconnect_deployments <- function(config_file){
                           port = port, 
                           user = "rsconnect_deployments@postgres-dev2", 
                           password = rstudioapi::askForPassword(
-                          prompt = "Password user 'rsconnect_deployments' (dev2, 1Password)")
+                            prompt = "Password user 'rsconnect_deployments' (dev2, 1Password)")
     )
   }
   
