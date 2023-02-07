@@ -187,7 +187,7 @@ deploy_rsconnect <- function(){
       #if(shintodb::config_is_encrypted(db_config_file)){
       # unencrypted wordt toch geskipt
       shintodb::decrypt_config_file(db_config_file,db_config_file)
-      #}
+      on.exit({shintodb::encrypt_config_file(db_config_file)}, add = TRUE)
       
       # Deploy de app
       resp <- rsconnect::deployApp(
@@ -208,7 +208,7 @@ deploy_rsconnect <- function(){
                                   userid = selected_account())
       }
       
-      shintodb::encrypt_config_file(db_config_file)
+      
       
       shiny::stopApp(paste("Applicatie gedeployed naar",input$txt_appname))
       
