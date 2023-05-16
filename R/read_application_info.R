@@ -26,8 +26,22 @@ read_application_info <- function(read_git = TRUE){
     git <- list(sha="",last_update="")
   }
   
+  version <- get_application_version()
   
-  list(rsconnect = lis, this_version = thisv, git = git)
+  list(rsconnect = lis, this_version = thisv, git = git, version = version)
   
 }
 
+
+#' Read software version from VERSION
+#' @export
+get_application_version = function(){
+  
+  fn <- "VERSION"
+  if(!file.exists(fn)){
+    ""
+  } else {
+    trimws(readLines(fn)[1])
+  }
+  
+}

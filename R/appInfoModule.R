@@ -50,7 +50,7 @@ appInfoUI <- function(id,
                                 "padding-top: 20px;")),
 
     tags$table(style = "width: 100%;",
-               info_row("Versie", info$this_version$appversion),
+               info_row("Versie", info$version),
                info_row("Gepubliceerd", release_date),
                info_row("Git", git_ver)
     ),
