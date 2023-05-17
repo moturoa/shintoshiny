@@ -177,7 +177,7 @@ deploy_rsconnect <- function(){
     shiny::observeEvent(input$btn_confirm, {
       
       # 
-      if(input$rad_log_deploy == "Ja"){
+      if(input$rad_log_deploy == "Ja" & file.exists(db_config_file)){
         con <- connect_db_rsconnect_deployments(db_config_file)
         on.exit({
           DBI::dbDisconnect(con)
@@ -186,8 +186,11 @@ deploy_rsconnect <- function(){
 
       #if(shintodb::config_is_encrypted(db_config_file)){
       # unencrypted wordt toch geskipt
-      shintodb::decrypt_config_file(db_config_file,db_config_file)
-      on.exit({shintodb::encrypt_config_file(db_config_file)}, add = TRUE)
+      if(file.exists(db_config_file)){
+        shintodb::decrypt_config_file(db_config_file,db_config_file)
+        on.exit({shintodb::encrypt_config_file(db_config_file)}, add = TRUE)  
+      }
+      
       
       # Deploy de app
       resp <- rsconnect::deployApp(
