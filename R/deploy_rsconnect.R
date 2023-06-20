@@ -13,7 +13,7 @@ check_appname <- function(appname = ""){
   } else {
     
     tv <- yaml::read_yaml("this_version.yml")
-    klant <- unname(unlist(tv[c("klant","gemeente")]))
+    klant <- unname(unlist(tv[c("klant","gemeente","tenant")]))
     
     if(!grepl(klant, appname, ignore.case = TRUE)){
       tags$p(paste0("Klant is '", klant, "' maar appName is '", appname, "', klopt dit?"),
