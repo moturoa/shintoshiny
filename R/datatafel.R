@@ -1,5 +1,5 @@
 #' Datatable, Nederlandse versie
-#' @importFrom DT datatable
+#' @importFrom DT datatable renderDT
 #' @export
 datatafel <- function(..., 
                       dom  = "frtip",
