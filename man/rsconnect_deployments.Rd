@@ -5,9 +5,25 @@
 \alias{connect_db_rsconnect_deployments}
 \title{Write deployment info to rsconnect_deployments database}
 \usage{
-log_rsconnect_deployments(con, appname, environment, userid)
+log_rsconnect_deployments(
+  con,
+  appname,
+  environment,
+  userid,
+  shintoconnect_manifest = NULL,
+  version = NULL
+)
 
 connect_db_rsconnect_deployments(config_file)
+}
+\arguments{
+\item{con}{Database connection to \code{rsconnect_deployments}}
+
+\item{appname}{app name on posit connect}
+
+\item{environment}{Environment field in db (filled elsewhere)}
+
+\item{userid}{userid}
 }
 \description{
 Write deployment info to rsconnect_deployments database

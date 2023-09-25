@@ -141,9 +141,13 @@ deploy_rsconnect <- function(){
       # 
       if(input$rad_log_deploy == "Ja" & file.exists(db_config_file)){
         con <- connect_db_rsconnect_deployments(db_config_file)
-        on.exit({
-          DBI::dbDisconnect(con)
-        })  
+        
+        if(!is.null(con)){
+          on.exit({
+            DBI::dbDisconnect(con)
+          })  
+        }
+          
       }
 
       #if(shintodb::config_is_encrypted(db_config_file)){
