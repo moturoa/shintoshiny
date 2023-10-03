@@ -159,7 +159,7 @@ deploy_rsconnect <- function(){
       
       
       # Deploy de app
-      resp <- rsconnect::deployApp(
+      resp <- rsconnect::deployApp(appName = input$txt_appname,
         appTitle = input$txt_appname,
         appId = if(input$txt_appid == "")NULL else input$txt_appid,
         account = selected_account(),
