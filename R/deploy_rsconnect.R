@@ -159,15 +159,26 @@ deploy_rsconnect <- function(){
       
       
       # Deploy de app
-      resp <- rsconnect::deployApp(appName = input$txt_appname,
-        appTitle = input$txt_appname,
-        appId = if(input$txt_appid == "")NULL else input$txt_appid,
-        account = selected_account(),
-        server = selected_server(),
-        launch.browser = TRUE,
-        lint = TRUE,
-        forceUpdate = TRUE
-      )
+      
+      appid <- input$txt_appid
+      
+      if(appid == ""){
+        resp <- rsconnect::deployApp(appName = input$txt_appname,
+                                     appTitle = input$txt_appname,
+                                     account = selected_account(),
+                                     server = selected_server(),
+                                     launch.browser = TRUE,
+                                     forceUpdate = TRUE)
+        
+      } else {
+        resp <- rsconnect::deployApp(appId = appid,
+                                     account = selected_account(),
+                                     server = selected_server(),
+                                     launch.browser = TRUE,
+                                     forceUpdate = TRUE)  
+      }
+      
+      
       
       if(isTRUE(resp) && input$rad_log_deploy == "Ja"){
         # Schrijf deployment info naar rsconnect_deployments database

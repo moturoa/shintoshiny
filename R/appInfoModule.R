@@ -81,8 +81,8 @@ appInfoModule <- function(input, output, session){
     }
 
     tags$table(style = "width: 100%;",
-               bold_table_row("Browser", glue("{bi$name} ({bi$version})")),
-               bold_table_row("OS", glue("{bi$osname} ({bi$osversion})"))
+               bold_table_row("Browser", glue::glue("{bi$name} ({bi$version})")),
+               bold_table_row("OS", glue::glue("{bi$osname} ({bi$osversion})"))
     )
 
   })

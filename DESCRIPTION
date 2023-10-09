@@ -7,8 +7,7 @@ Maintainer: Remko Duursma <remko@shintolabs.nl>
 Depends: shiny, glue
 Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer, 
   DBI, config, shinyWidgets,rsconnect,gert,shintodb, DT
-Description: Logins, httpheaders app, info, user names, authentication, 
-  deployment, loading screen, idle timeout, etc.
+Description: Various utilities/modules for shinto shiny applications
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

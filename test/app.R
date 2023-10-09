@@ -29,7 +29,7 @@ read_app_settings <- function(file = "this_version.yml"){
 
 li_klant <- function(app){
   tags$li(tags$span(app$klant), class = "dropdown",
-          style = glue("font-weight: 500;",
+          style = glue::glue("font-weight: 500;",
                        "height: 50px;",
                        "font-size: 1.1em;",
                        "color: white;",

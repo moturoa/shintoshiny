@@ -19,5 +19,5 @@ datatafel(
 )
 }
 \description{
-Datatable, Nederlandse versie
+Alleen hier voor oude applicaties die deze versie nog gebruiken. Zie soft::datatafel, softui::reactafel
 }

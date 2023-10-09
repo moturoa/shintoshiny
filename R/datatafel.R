@@ -1,4 +1,5 @@
 #' Datatable, Nederlandse versie
+#' @description Alleen hier voor oude applicaties die deze versie nog gebruiken. Zie soft::datatafel, softui::reactafel
 #' @importFrom DT datatable renderDT
 #' @export
 datatafel <- function(..., 
