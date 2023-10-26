@@ -22,7 +22,7 @@
 make_deploy_project <- function(name,
                    path = "c:/repos_deploy",
                    ignore_dirs = c("scripts","stubs","test","tests","backup","docs",
-                                   "rsconnect", ".git", ".Rproj.user"),
+                                   "rsconnect", ".git", ".Rproj.user","cache"),
                    ignore_files = c(".gitignore",".Rhistory", "[.]Rproj$"),
                    extra_files = NULL,
                    directories = NULL
