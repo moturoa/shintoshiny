@@ -1,9 +1,9 @@
 Package: shintoshiny
 Type: Package
 Title: All the boring components of a Shinto Labs shiny app
-Version: 1.1.2
-Author: Remko Duursma
-Maintainer: Remko Duursma <remko@shintolabs.nl>
+Version: 1.1.3
+Author: Remko Duursma, Wesley Brants
+Maintainer: Wesley Brants <wesley@shintolabs.nl>
 Depends: shiny, glue
 Imports: glue, htmltools, shinydisconnect, shinydashboard, miniUI, rstudioapi (>= 0.5), safer, 
   DBI, config, shinyWidgets,rsconnect,gert,shintodb, DT
